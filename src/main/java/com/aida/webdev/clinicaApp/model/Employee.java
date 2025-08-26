@@ -1,5 +1,6 @@
 package com.aida.webdev.clinicaApp.model;
 
+import com.aida.webdev.clinicaApp.enums.Department;
 import com.aida.webdev.clinicaApp.enums.EmployeeStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,7 +19,10 @@ public class Employee {
     private Long id;
 
     private String name;
-    private String department;
+
+    @Enumerated(EnumType.STRING)
+    private Department department;
+
     private EmployeeStatus employeeStatus;
 
     @OneToMany(mappedBy = "employee")
