@@ -33,13 +33,11 @@ public class PatientController {
 
     @GetMapping("/find/by-birthdate-range")
     public List<Patient> findPatientByDateOfBirthRange(
-            @RequestParam("startDate") String startDate,
-            @RequestParam("endDate") String endDate
-            ){
-        LocalDate start = LocalDate.parse(startDate);
-        LocalDate end = LocalDate.parse(endDate);
-        return patientService.findPatientByDateOfBirthRange(start, end);
+            @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+            @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
+        return patientService.findPatientByDateOfBirthRange(startDate, endDate);
     }
+
 
     @GetMapping("/find/by-doctors-department")
     public ResponseEntity<List<Patient>> findPatientByDoctorsDepartment(@RequestParam Department department) {
